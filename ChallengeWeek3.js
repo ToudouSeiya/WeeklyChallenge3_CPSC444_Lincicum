@@ -27,8 +27,30 @@ window.addEventListener("keyup", (event) => {
 const scene = new THREE.Scene();
 scene.background = new THREE.Color(0x87ceeb);
 
-const camera = new THREE.PerspectiveCamera(60, 1, 0.1, 100);
-camera.position.set(-3, 5, 20);
+// const camera = new THREE.PerspectiveCamera(60, 1, 0.1, 100);
+// camera.position.set(-3, 5, 20);
+
+// const camera =
+//     new THREE.OrthographicCamera(
+//     -10,
+//      10,
+//      10,
+//     -10,
+//      0.1,
+//      100
+// );
+// camera.position.set(-3, 2, 20);
+
+const camera =
+    new THREE.OrthographicCamera(
+    -30,
+     30,
+     20,
+    -20,
+     0.1,
+     100
+);
+camera.position.set(-3, 2, 20);
 
 const renderer = new THREE.WebGLRenderer({ antialias: true });
 renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
