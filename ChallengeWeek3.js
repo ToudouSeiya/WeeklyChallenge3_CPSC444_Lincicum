@@ -28,7 +28,7 @@ const scene = new THREE.Scene();
 scene.background = new THREE.Color(0x87ceeb);
 
 const camera = new THREE.PerspectiveCamera(60, 1, 0.1, 100);
-camera.position.set(0, 8, 16);
+camera.position.set(-3, 5, 20);
 
 const renderer = new THREE.WebGLRenderer({ antialias: true });
 renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
@@ -90,7 +90,7 @@ const positions = [
 [4.5, 5, 2],
 [-1, 4, -1.5],
 [0, 7, 0],
-[-6, 1, 6]
+[-6, 1, 8]
 ];
 
 positions.forEach(([x, y, z], index) => {
@@ -107,7 +107,7 @@ const sphere = new THREE.Mesh(
     new THREE.SphereGeometry(1.5, 32, 32),
     new THREE.MeshStandardMaterial({ color: 0xff6600 })
 );
-sphere.position.set(0, 12, -6);
+sphere.position.set(15, 15, -20);
 scene.add(sphere);
 
 function resizeRenderer() {
