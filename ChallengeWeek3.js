@@ -7,7 +7,7 @@ import { OrbitControls } from "https://unpkg.com/three@0.179.1/examples/jsm/cont
 
 const container = document.getElementById("scene-container") || document.body;
 const pressedKeys = new Set();
-const cameraKeys = new Set(["ArrowUp", "ArrowDown", "ArrowLeft", "ArrowRight", "w", "a", "s", "d"]);
+const cameraKeys = new Set(["ArrowUp", "ArrowDown", "ArrowLeft", "ArrowRight", "w", "a", "s", "d", "o", "p"]);
 
 window.addEventListener("keydown", (event) => {
     if (cameraKeys.has(event.key)) {
@@ -16,6 +16,12 @@ window.addEventListener("keydown", (event) => {
 
         if (event.key === "ArrowUp" || event.key === "ArrowDown") {
             zoomCamera(event.key === "ArrowUp" ? -1 : 1);
+        }
+
+        if (event.key === "p" || event.key === "o") {
+            camera = (event.key === "p" ? pCamera : oCamera);
+            controls = (event.key === "p" ? pControls : oControls);
+            refreshCamera();
         }
     }
 });
@@ -27,30 +33,39 @@ window.addEventListener("keyup", (event) => {
 const scene = new THREE.Scene();
 scene.background = new THREE.Color(0x87ceeb);
 
-// const camera = new THREE.PerspectiveCamera(60, 1, 0.1, 100);
-// camera.position.set(-3, 5, 20);
+const pCamera = new THREE.PerspectiveCamera(60, 1, 0.1, 100);
+pCamera.position.set(-3, 5, 20);
 
-// const camera =
-//     new THREE.OrthographicCamera(
-//     -10,
-//      10,
-//      10,
-//     -10,
-//      0.1,
-//      100
-// );
-// camera.position.set(-3, 2, 20);
 
-const camera =
+const oCamera =
     new THREE.OrthographicCamera(
-    -30,
-     30,
-     20,
-    -20,
+    -15,
+     15,
+     10,
+    -10,
      0.1,
      100
 );
-camera.position.set(-3, 2, 20);
+oCamera.position.set(-3, 5, 20);
+
+var camera = oCamera;
+
+function refreshCamera(){
+    const cameraOffset = camera.position.clone().sub(controls.target);
+    const zoomDistance = THREE.MathUtils.clamp(
+        cameraOffset.length(),
+        minZoomDistance,
+        maxZoomDistance
+    );
+
+    camera.position.copy(controls.target).add(cameraOffset.normalize().multiplyScalar(zoomDistance));
+    controls.update();
+    renderer.render(scene, camera);
+
+    resizeRenderer();
+
+    renderer.render(scene, camera);
+}
 
 const renderer = new THREE.WebGLRenderer({ antialias: true });
 renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
@@ -59,9 +74,15 @@ renderer.domElement.style.display = "block";
 renderer.domElement.style.marginTop = "1rem";
 container.appendChild(renderer.domElement);
 
-const controls = new OrbitControls(camera, renderer.domElement);
-controls.enableDamping = true;
-controls.target.set(0, 1, 0);
+const pControls = new OrbitControls(pCamera, renderer.domElement);
+pControls.enableDamping = true;
+pControls.target.set(0, 1, 0);
+
+const oControls = new OrbitControls(oCamera, renderer.domElement);
+oControls.enableDamping = true;
+oControls.target.set(0, 1, 0);
+
+var controls = oControls;
 
 const zoomStep = 1;
 const minZoomDistance = 4;
