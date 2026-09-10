@@ -23,7 +23,7 @@ window.addEventListener("keydown", (event) => {
             controls = (event.key === "p" ? pControls : oControls);
             refreshCamera();
 
-            var text = (event.key === "p" ? "Perspective" : "Orthogonal");
+            var text = (event.key === "p" ? "Perspective" : "Orthographic");
             document.getElementById("currentCamera").innerHTML = text;
         }
     }
@@ -119,7 +119,7 @@ ground.rotation.x = -Math.PI / 2;
 scene.add(ground);
 
 const cubes = [];
-const cubeColors = [0x996633, 0x996633, 0x996633, 0x996633, 0x006600, 0x999966];
+const cubeColors = [0x996633, 0x996633, 0x996633, 0x996633, 0x006600, 0x999966, 0x999966];
 
 const cubeSizes = [
     [2, 7, 2], 
@@ -127,7 +127,8 @@ const cubeSizes = [
     [0.5, 0.5, 3], 
     [0.5, 0.5, 5],
     [10, 2, 10], 
-    [4, 2, 2]
+    [4, 2, 2],
+    [2, 1, 2]
 ];
 
 const positions = [
@@ -136,7 +137,8 @@ const positions = [
 [4.5, 5, 2],
 [-1, 4, -1.5],
 [0, 7, 0],
-[-6, 1, 8]
+[-6, 1, 10],
+[5, 1, -6]
 ];
 
 positions.forEach(([x, y, z], index) => {
