@@ -30,7 +30,9 @@ Why?
 
 # Answer:
 A. Perspective camera would be best for a first-person shooter, as it's important in a first-person game to be able to perceive depth. This will make it much easier to move your character where you want to go, and aiming will be more accurate.
+
 B. Orthographic would be better for a technical blueprint software, because technical diagrams need to be able to accurately display lengths rather than distort them.
+
 C. Depending on how the game works, either could work, but for a top-down style game like Civ, orthographic would be better so that each tile appears the same size despite distance from the camera. This will keep the game even and readable.
 
 # Question 5:
