@@ -67,28 +67,28 @@ scene.add(directionalLight);
 
 const ground = new THREE.Mesh(
     new THREE.PlaneGeometry(40, 40),
-    new THREE.MeshStandardMaterial({ color: 0x44aa44 })
+    new THREE.MeshStandardMaterial({ color: 0x99cc00 })
 );
 ground.rotation.x = -Math.PI / 2;
 scene.add(ground);
 
 const cubes = [];
-const cubeColors = [0xff6b6b, 0xffc857, 0x4ecdc4, 0x5dade2, 0xa78bfa];
+const cubeColors = [0x996633, 0x996633, 0x996633, 0x006600, 0x999966];
 
 const cubeSizes = [
-    [5, 2, 2], 
     [2, 7, 2], 
-    [1, 1, 1], 
-    [2, 2, 2], 
-    [2, 2, 2]
+    [5, 1, 1], 
+    [0.5, 0.5, 3], 
+    [10, 2, 10], 
+    [4, 2, 2]
 ];
 
 const positions = [
-[-8, 1, -4],
-[-3, 1, -2],
-[0, 1, 0],
-[3, 1, 2],
-[6, 1, 4]
+[0, 3.5, 0],
+[2.5, 5, 0],
+[4.5, 5, 2],
+[0, 7, 0],
+[-6, 1, 6]
 ];
 
 positions.forEach(([x, y, z], index) => {
@@ -103,9 +103,9 @@ positions.forEach(([x, y, z], index) => {
 
 const sphere = new THREE.Mesh(
     new THREE.SphereGeometry(1.5, 32, 32),
-    new THREE.MeshStandardMaterial({ color: 0xff4444 })
+    new THREE.MeshStandardMaterial({ color: 0xff6600 })
 );
-sphere.position.set(0, 1, -6);
+sphere.position.set(0, 12, -6);
 scene.add(sphere);
 
 function resizeRenderer() {
