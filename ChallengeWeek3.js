@@ -170,3 +170,15 @@ window.addEventListener("resize", resizeRenderer);
 resizeRenderer();
 renderer.render(scene, camera);
 
+// Animation Loop
+function animate()
+{
+    requestAnimationFrame(animate);
+
+    renderer.render(
+        scene,
+        camera
+    );
+}
+
+animate();
