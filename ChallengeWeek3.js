@@ -1,3 +1,7 @@
+//  Name: Morgan Lincicum
+// CPSC444
+// Week 3 Challenge
+
 import * as THREE from "https://unpkg.com/three@0.179.1/build/three.module.js";
 import { OrbitControls } from "https://unpkg.com/three@0.179.1/examples/jsm/controls/OrbitControls.js";
 
@@ -71,8 +75,16 @@ scene.add(ground);
 const cubes = [];
 const cubeColors = [0xff6b6b, 0xffc857, 0x4ecdc4, 0x5dade2, 0xa78bfa];
 
+const cubeSizes = [
+    [5, 2, 2], 
+    [2, 7, 2], 
+    [1, 1, 1], 
+    [2, 2, 2], 
+    [2, 2, 2]
+];
+
 const positions = [
-[-6, 1, -4],
+[-8, 1, -4],
 [-3, 1, -2],
 [0, 1, 0],
 [3, 1, 2],
@@ -81,7 +93,7 @@ const positions = [
 
 positions.forEach(([x, y, z], index) => {
     const cube = new THREE.Mesh(
-        new THREE.BoxGeometry(2, 2, 2),
+        new THREE.BoxGeometry(cubeSizes[index][0], cubeSizes[index][1], cubeSizes[index][2]),
         new THREE.MeshStandardMaterial({ color: cubeColors[index] })
     );
     cube.position.set(x, y, z);
