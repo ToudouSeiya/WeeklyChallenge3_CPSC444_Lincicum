@@ -22,6 +22,9 @@ window.addEventListener("keydown", (event) => {
             camera = (event.key === "p" ? pCamera : oCamera);
             controls = (event.key === "p" ? pControls : oControls);
             refreshCamera();
+
+            var text = (event.key === "p" ? "Perspective" : "Orthogonal");
+            document.getElementById("currentCamera").innerHTML = text;
         }
     }
 });
